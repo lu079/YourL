@@ -5,15 +5,12 @@ item = db.relationship('classe_de_ellos', backref='clase_nosotros', lazy='dynami
 es la referencia de la clave foranea
 referencia_de_ellos_id=db.Column(db.Integer,db.ForeignKey('clase ellos.id')) """
 
-
-class orders(db.Model):
+class product_category(db.Model):
     id=db.Column(db.Integer,primary_key=True)
-    product_id=db.Column(db.Integer)
-    adres_id=db.Column(db.Integer)
-    user_phone_number=db.Column(db.String(20))
-    delivery_date=db.Column(db.String)
-    items = db.relationship('user_address', backref='orders', lazy='dynamic')
-    item2 = db.relationship('products', backref='orders', lazy='dynamic')
+    name=db.Column(db.String(100))
+    description=db.Column(db.String(250))
+    # product2_id=db.Column(db.Integer,db.ForeignKey('products.id'))
+
 
 class products(db.Model):
     id=db.Column(db.Integer, primary_key=True)
@@ -23,16 +20,20 @@ class products(db.Model):
     posology=db.Column(db.String)
     management=db.Column(db.String)
     stock_code=db.Column(db.String(100))
-    category_id=db.Column(db.Integer)
+    category_id=db.Column(db.Integer, db.ForeignKey('product_category.id'))
     inventory_id=db.Column(db.Integer)
     price=db.Column(db.FLoat)
     discount_id=db.Column(db.Integer)
     orders_id=db.Column(db.Integer,db.ForeignKey('orders.id'))
-    order_destails_id=db.Column(db.Integer,db.ForeignKey('order_destails.id'))
-    item3 = db.relationship('products', backref='product_category', lazy='dynamic')
-    item4 = db.relationship('products', backref='discount', lazy='dynamic')
-    item5 = db.relationship('products', backref='inventoryt', lazy='dynamic')
+    # orders_id=db.Column(db.Integer,db.ForeignKey('orders.id'))
+    # order_destails_id=db.Column(db.Integer,db.ForeignKey('order_destails.id'))
+    # item3 = db.relationship('products', backref='product_category', lazy='dynamic')
+    # item4 = db.relationship('products', backref='discount', lazy='dynamic')
+    # item5 = db.relationship('products', backref='inventoryt', lazy='dynamic')
 
+
+
+""" 
 class users(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     user_name=db.Column(db.String(25))
@@ -59,12 +60,6 @@ class order_destails(db.Model):
     quantity=db.Column(db.Integer)
     item6= db.relationship('products', backref='order_destails', lazy='dynamic')
 
-class product_category(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(100))
-    description=db.Column(db.String(250))
-    product2_id=db.Column(db.Integer,db.ForeignKey('products.id'))
-
 class user_address(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer)
@@ -78,6 +73,14 @@ class user_address(db.Model):
     adres_id=db.Column(db.Integer,db.ForeignKey('orders.id'))
     item7 = db.relationship('users', backref='user_address', lazy='dynamic')
 
+class orders(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    product_id=db.Column(db.Integer)
+    adres_id=db.Column(db.Integer)
+    user_phone_number=db.Column(db.String(20))
+    delivery_date=db.Column(db.String)
+    items = db.relationship('user_address', backref='orders', lazy='dynamic')
+    item2 = db.relationship('products', backref='orders', lazy='dynamic')
 
 class user_payment(db.Model):
     id=db.Column(db.Integer,primary_key=True)
@@ -88,4 +91,7 @@ class user_payment(db.Model):
     payment_date=db.Column(db.String)
     payment_detail=db.Column(db.String(500))
     item8 = db.relationship('users', backref='user_payment', lazy='dynamic')
+ """
+
+
 
