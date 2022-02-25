@@ -17,7 +17,7 @@ def listar_productos():
     }
     return make_response(jsonify(data))
 
-
+""" 
 @cross_origin
 @app.route('/autenticar/<uname>/<passw>',methods=["POST"])
 def autenticar(uname,passw):
@@ -44,4 +44,4 @@ def category_product(categoryid):
                 description=category_product.description,
                 items=[dict(id=item.id,
         name=item.name, price=item.price,stock_code=item.stock_code) for item in
-        category_product.items])
+        category_product.items]) """
