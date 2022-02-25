@@ -1,9 +1,4 @@
 from app import db
-""" clave foranea:
-Crea la clave foranea- 
-item = db.relationship('classe_de_ellos', backref='clase_nosotros', lazy='dynamic')
-es la referencia de la clave foranea
-referencia_de_ellos_id=db.Column(db.Integer,db.ForeignKey('clase ellos.id')) """
 
 class ProductCategory(db.Model):
     id=db.Column(db.Integer,primary_key=True)
@@ -129,8 +124,6 @@ class user_payment(db.Model):
     payment_detail=db.Column(db.String(500))
     item8 = db.relationship('users', backref='user_payment', lazy='dynamic')
  """
-
-
 
 
 
