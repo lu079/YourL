@@ -1,5 +1,5 @@
 from flask import Flask
-from app.config import Config
+from app import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
@@ -16,7 +16,7 @@ app.config.from_object(Config)
 db=SQLAlchemy(app)
 
 # importar los que no tienen corexión directa
-from app import models
+from app import models,routers
 
 
 
