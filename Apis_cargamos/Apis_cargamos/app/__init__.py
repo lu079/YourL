@@ -7,6 +7,7 @@ import os
 # creando app
 app=Flask(__name__)
 cors=CORS(app)
+# clave de seguridad
 app.secret_key = os.urandom(24)
 app.config['CORS_HEADERS']='Content-Type'
 
@@ -17,6 +18,8 @@ db=SQLAlchemy(app)
 
 # importar los que no tienen corexión directa
 from app import models,routers
+
+
 
 
 
