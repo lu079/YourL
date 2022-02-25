@@ -14,14 +14,14 @@ class Product(db.Model):
     management=db.Column(db.String)
     stock_code=db.Column(db.String(100))
     category_id=db.Column(db.Integer, db.ForeignKey('ProductCategory.id'))
-    category =db.Relationship('ProductCategory', backref='category_products')
+    category =db.Relationship('ProductCategory', backref='category_products', lazy='dynamic')
     price=db.Column(db.FLoat)
     discount_price=db.Column(db.FLoat)
 
 class Order(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
-    user =db.Relationship('Users', backref='users_orders')
+    user =db.Relationship('Users', backref='users_orders', lazy='dynamic')
     order_num = db.Column(db.String(50), unique=True)
     delivery_date = db.Column(db.Date)
 
@@ -31,9 +31,9 @@ class Order(db.Model):
 class OrderProduct(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     order_id = db.Column(db.Integer, db.ForeignKey('Orders.id'))
-    order =db.Relationship('Orders', backref='order_order_products')
+    order =db.Relationship('Orders', backref='order_order_products', lazy='dynamic')
     product_id = db.Column(db.Integer, db.ForeignKey('Products.id'))
-    product = db.Relationship('Products', backref='product_order_products')
+    product = db.Relationship('Products', backref='product_order_products', lazy='dynamic')
     quantity = db.Column(db.Integer)
 
     def __repr__(self):
@@ -42,7 +42,7 @@ class OrderProduct(db.Model):
 class UserAddress(db.Model):
     id = db.Column(db.integer, primary_key= True)
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
-    user =db.Relationship('Users', backref='user_user_addresses')
+    user =db.Relationship('Users', backref='user_user_addresses', lazy='dynamic')
     address1 = db.Column(db.String(150))
     address2 = db.Column(db.String(150))
     zipcode = db.Column(db.Integer)
@@ -56,7 +56,7 @@ class UserAddress(db.Model):
 class Payment(db.Model):
     id = db.Column(db.integer, primary_key= True)
     order_id = db.Column(db.Integer, db.ForeignKey('Orders.id'))
-    order =db.Relationship('Orders', backref='order_payments')
+    order =db.Relationship('Orders', backref='order_payments', lazy='dynamic')
     paymant_date = db.Column(db.Date)
     payment_type = db.Column(db.String(20))
 
@@ -124,6 +124,10 @@ class user_payment(db.Model):
     payment_detail=db.Column(db.String(500))
     item8 = db.relationship('users', backref='user_payment', lazy='dynamic')
  """
+
+
+
+
 
 
 
