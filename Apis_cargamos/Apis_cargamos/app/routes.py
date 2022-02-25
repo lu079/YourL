@@ -5,6 +5,8 @@ from app.serializer import productCategory_schema,productCategorys_schema,produc
 
 from flask_cors import cross_origin
 
+/*renombrar carpeta routes > routers*/
+
 @cross_origin
 @app.route("/listar_producto",methods=["GET"])
 def listar_producto():
